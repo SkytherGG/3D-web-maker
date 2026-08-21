@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="GetYourWeb — a Bangladesh web agency building stunning, results-driven websites: custom builds, e-commerce, 3D & animated sites, AI, SEO and Cloudflare security." />
+<meta name="theme-color" content="#070B14" />
+<title>GetYourWeb — Web Design & Development Agency in Bangladesh</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#070B14;
+    --bg2:#0A101F;
+    --card:#0E1626;
+    --card2:#121C30;
+    --line:rgba(255,255,255,.09);
+    --text:#E8EEF9;
+    --muted:#9AA7BF;
+    --teal:#2DD4BF;
+    --cyan:#22D3EE;
+    --violet:#8B5CF6;
+    --indigo:#6D5BFF;
+    --grad:linear-gradient(100deg,#2DD4BF,#22D3EE 35%,#8B5CF6);
+    --grad-soft:linear-gradient(100deg,rgba(45,212,191,.14),rgba(139,92,246,.14));
+    --radius:18px;
+    --maxw:1180px;
+    --font-head:'Sora',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --font-body:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:auto}
+  body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:var(--font-body);line-height:1.6;overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  h1,h2,h3,h4{font-family:var(--font-head);line-height:1.15;margin:0;letter-spacing:-.01em}
+  p{margin:0}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+
+  /* ---------- Logo ---------- */
+  .logo{display:flex;align-items:center;gap:11px;font-family:var(--font-head);font-weight:800;font-size:19px;letter-spacing:-.02em}
+  .logo .mark{width:38px;height:38px;flex:0 0 auto;filter:drop-shadow(0 4px 14px rgba(45,212,191,.35))}
+  .logo .gw{color:#fff}
+  .logo .yw{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ---------- Header ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:200;
+    transition:background .35s ease,box-shadow .35s ease,border-color .35s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{background:rgba(7,11,20,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .nav-links{display:flex;align-items:center;gap:clamp(14px,2.4vw,30px)}
+  .nav-links a{font-size:14px;font-weight:500;color:var(--muted);transition:color .2s;white-space:nowrap}
+  .nav-links a:hover{color:#fff}
+  .nav-cta{display:inline-block;padding:10px 20px;border-radius:999px;font-family:var(--font-head);font-weight:600;font-size:13px;color:#04121a;background:var(--grad);box-shadow:0 6px 20px rgba(45,212,191,.35);transition:transform .2s,box-shadow .2s;white-space:nowrap}
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(45,212,191,.5)}
+  .burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
+  .burger span{display:block;width:22px;height:2px;background:#fff;margin:5px 0;border-radius:2px;transition:.3s}
+  @media(max-width:840px){
+    .nav-links{position:fixed;inset:70px 0 auto 0;flex-direction:column;gap:4px;background:rgba(7,11,20,.97);padding:16px clamp(20px,5vw,40px) 22px;border-bottom:1px solid var(--line);transform:translateY(-130%);transition:transform .35s ease;align-items:flex-start}
+    .nav-links.open{transform:translateY(0)}
+    .nav-links a{width:100%;padding:12px 4px;font-size:17px}
+    .nav-links .nav-cta{margin-top:10px}
+    .burger{display:block}
+  }
+
+  /* ---------- World (engine mounts here) ---------- */
+  #world{position:relative}
+
+  /* ---------- Sections ---------- */
+  section{position:relative;z-index:60;background:var(--bg)}
+  .sec{padding:clamp(70px,9vw,120px) 0}
+  .sec-alt{background:linear-gradient(180deg,var(--bg),#070C18)}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-head);font-weight:600;font-size:12px;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--teal);margin-bottom:16px;
+  }
+  .eyebrow::before{content:"";width:24px;height:2px;background:var(--grad);border-radius:2px}
+  .sec-head{max-width:720px;margin-bottom:clamp(30px,5vw,52px)}
+  .sec-head h2{font-size:clamp(28px,4.4vw,46px);font-weight:700}
+  .sec-head h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sec-head p{color:var(--muted);margin-top:16px;font-size:clamp(15px,1.5vw,17px)}
+  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .grid{display:grid;gap:20px}
+  .g-2{grid-template-columns:repeat(2,1fr)}
+  .g-3{grid-template-columns:repeat(3,1fr)}
+  .g-4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:920px){.g-4,.g-3{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.g-2,.g-4,.g-3{grid-template-columns:1fr}}
+
+  .card{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:var(--radius);padding:24px;transition:transform .25s,border-color .25s,box-shadow .25s;position:relative;overflow:hidden}
+  .card:hover{transform:translateY(-4px);border-color:rgba(45,212,191,.4);box-shadow:0 18px 40px rgba(0,0,0,.4)}
+  .card .icon{width:46px;height:46px;border-radius:12px;background:var(--grad-soft);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .card .icon svg{width:24px;height:24px}
+  .card h3{font-size:17px;font-weight:600;margin-bottom:8px}
+  .card p{color:var(--muted);font-size:14px}
+  .card .num{position:absolute;top:18px;right:20px;font-family:var(--font-head);font-weight:700;font-size:30px;color:rgba(255,255,255,.06)}
+  .card.feature .icon{color:var(--teal)}
+
+  /* ---------- Hero / intro ---------- */
+  .intro{text-align:center;padding:clamp(60px,7vw,90px) 0 0}
+  .intro h1{font-size:clamp(34px,6vw,64px);font-weight:800;max-width:900px;margin:0 auto;letter-spacing:-.02em}
+  .intro h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .intro .lede{color:var(--muted);font-size:clamp(16px,1.9vw,19px);max-width:680px;margin:22px auto 0}
+  .intro .lede strong{color:#fff;font-weight:600}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:clamp(44px,6vw,70px) auto 0;max-width:1000px}
+  @media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stat{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:16px;padding:22px 16px}
+  .stat b{display:block;font-family:var(--font-head);font-size:clamp(26px,3vw,36px);font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.1}
+  .stat span{color:var(--muted);font-size:13px;margin-top:6px;display:block}
+
+  /* ---------- Pricing ---------- */
+  .tier{display:flex;flex-direction:column;gap:22px}
+  .tier .price{font-family:var(--font-head)}
+  .tier .price .sym{font-size:18px;vertical-align:4px;color:var(--teal);margin-right:2px}
+  .tier .price .amt{font-size:clamp(34px,3.6vw,44px);font-weight:800;letter-spacing:-.02em}
+  .tier .price .per{color:var(--muted);font-size:14px}
+  .tier ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;flex:1}
+  .tier ul li{display:flex;gap:11px;color:#cfd8ea;font-size:14.5px;line-height:1.5}
+  .tier ul li::before{content:"";flex:0 0 auto;width:8px;height:8px;border-radius:50%;background:var(--grad);margin-top:7px}
+  .tier .btn{display:block;text-align:center;padding:14px;border-radius:12px;font-family:var(--font-head);font-weight:600;font-size:14px;border:1px solid var(--line);color:var(--text);transition:.2s;background:rgba(255,255,255,.02)}
+  .tier .btn:hover{border-color:var(--teal);background:var(--grad-soft)}
+  .tier.featured{border:1px solid rgba(45,212,191,.5);box-shadow:0 20px 60px rgba(45,212,191,.12)}
+  .tier .badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--grad);color:#04121a;font-family:var(--font-head);font-weight:700;font-size:12px;padding:6px 16px;border-radius:999px;letter-spacing:.04em;white-space:nowrap}
+  .tier .tier-note{font-size:13px;color:var(--muted);margin-top:-10px}
+  .fine{margin-top:34px;padding:18px 20px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:13.5px;background:rgba(255,255,255,.02)}
+
+  /* ---------- Dual columns (AI / contact) ---------- */
+  .dual{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:860px){.dual{grid-template-columns:1fr}}
+  .panel{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+  .panel>h3{font-size:20px;font-weight:700;margin-bottom:4px}
+  .panel>.sub{color:var(--muted);font-size:14px;margin-bottom:20px}
+  .panel .p{font-size:24px;margin:0 0 2px}
+
+  .plan{border-top:1px solid var(--line);padding:18px 0;display:flex;flex-direction:column;gap:8px}
+  .plan:first-of-type{border-top:0;padding-top:4px}
+  .plan .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .plan .row b{font-family:var(--font-head);font-size:15px}
+  .plan .row .pc{font-family:var(--font-head);font-weight:700;color:var(--teal);white-space:nowrap}
+  .plan .row .pc small{color:var(--muted);font-weight:500;font-size:12px}
+  .plan ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+  .plan ul li{display:flex;gap:9px;color:var(--muted);font-size:13.5px}
+  .plan ul li::before{content:"·";color:var(--teal);font-weight:700}
+  .plan .features{font-size:13.5px;color:#cfd8ea}
+  .plan .features strong{color:#fff;font-weight:600}
+
+  /* ---------- Contact ---------- */
+  .contact-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:820px){.contact-cards{grid-template-columns:1fr}}
+  .ccard{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:var(--radius);padding:26px;text-align:center;transition:.25s}
+  .ccard:hover{border-color:rgba(45,212,191,.45);transform:translateY(-4px)}
+  .ccard .ci{width:52px;height:52px;margin:0 auto 16px;border-radius:14px;background:var(--grad);display:flex;align-items:center;justify-content:center}
+  .ccard .ci svg{width:26px;height:26px;color:#04121a}
+  .ccard h3{font-size:16px;font-weight:600}
+  .ccard .kind{color:var(--muted);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
+  .ccard a{display:block;margin-top:10px;font-weight:600;font-size:15px;color:var(--cyan);word-break:break-all}
+  .ccard a:hover{text-decoration:underline}
+
+  /* ---------- Footer ---------- */
+  footer{position:relative;z-index:60;background:#060A12;border-top:1px solid var(--line);padding:clamp(50px,6vw,80px) 0 34px}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:32px;margin-bottom:44px}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr}}
+  .foot-grid h4{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .foot-grid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+  .foot-grid ul a{color:#c7d1e4;font-size:14px;transition:.2s}
+  .foot-grid ul a:hover{color:var(--teal)}
+  .foot-about p{color:var(--muted);font-size:14px;max-width:40ch;margin-top:14px}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  .d0{transition-delay:.05s}.d1{transition-delay:.12s}.d2{transition-delay:.2s}.d3{transition-delay:.28s}.d4{transition-delay:.36s}
+
+  /* The world stage z-index is 50; header/content above it. */
+  .sw-stage{z-index:50}
+
+  /* Brand-tune the engine's HUD (injected after our CSS, so these win). */
+  .sw-cta-btn{
+    background:var(--grad)!important;color:#04121a!important;
+    font-family:var(--font-head)!important;font-weight:700!important;
+  }
+  .sw-cta-btn:hover{box-shadow:0 14px 40px rgba(45,212,191,.5)!important}
+  .sw-progress-fill{background:linear-gradient(90deg,var(--teal),var(--cyan),var(--violet))!important}
+  .sw-cine,.sw-cine-btn{background:rgba(255,255,255,.08)!important;border-color:rgba(255,255,255,.2)!important}
+  .sw-eyebrow{color:var(--teal)!important}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="GetYourWeb home">
+      <svg class="mark" viewBox="0 0 44 44" aria-hidden="true">
+        <defs>
+          <linearGradient id="gH" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#2DD4BF"/><stop offset="1" stop-color="#8B5CF6"/>
+          </linearGradient>
+        </defs>
+        <rect x="1" y="1" width="42" height="42" rx="12" fill="url(#gH)"/>
+        <g stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="22" cy="22" r="12"/>
+          <path d="M22 10a12 12 0 0 1 0 24"/>
+          <path d="M10 16.5a14 14 0 0 0 24 0"/>
+          <path d="M10 27.5a14 14 0 0 1 24 0"/>
+        </g>
+      </svg>
+      <span><span class="gw">Get</span><span class="yw">YourWeb</span></span>
+    </a>
+    <nav class="nav-links" id="navlinks">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#ai">AI &amp; GEO</a>
+      <a href="#security">Security</a>
+      <a href="#industries">Industries</a>
+      <a href="#contact" class="nav-cta">Start a project</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 3D World cinematic (hero) -->
+  <div id="world"></div>
+
+  <!-- ================= Ch 01 · Intro ================= -->
+  <section class="sec intro" id="intro">
+    <div class="wrap">
+      <div class="reveal in">
+        <span class="eyebrow" style="justify-content:center">The complete GetYourWeb manual</span>
+        <h1>Your website is your most <em>powerful business asset.</em></h1>
+        <p class="lede">At <strong>GetYourWeb</strong>, we partner with entrepreneurs, startups, and established brands across Bangladesh to create stunning, results-driven websites that do more than look great — they convert visitors into loyal customers. From concept to launch, we handle every detail so you can focus on what you do best: <strong>running your business.</strong></p>
+        <div class="pill-row" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px">
+          <span class="chip">Custom</span><span class="chip">High Performance</span><span class="chip">Scalable</span>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat reveal d0"><b>09</b><span>Services offered</span></div>
+        <div class="stat reveal d1"><b>2026</b><span>Est. · Bangladesh</span></div>
+        <div class="stat reveal d2"><b>24/7</b><span>Dedicated support</span></div>
+        <div class="stat reveal d3"><b>2–4 hrs</b><span>Response time</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Ch 02 · Why us ================= -->
+  <section class="sec sec-alt" id="why">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Ch. 02 · Why GetYourWeb</span>
+        <h2>What sets <em>us</em> apart.</h2>
+        <p>Every detail is engineered for one thing — helping your brand win online. Here’s why growing Bangladeshi brands choose us.</p>
+      </div>
+      <div class="grid g-3">
+        <div class="card feature reveal d0">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></svg></div>
+          <h3>Local Market Expertise</h3>
+          <p>Cultural nuance, consumer behaviour, and the competitive landscape — baked into every build so you outpace local rivals.</p>
+        </div>
+        <div class="card feature reveal d1">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></div>
+          <h3>Fast Turnaround</h3>
+          <p>Clear timelines, milestone updates, launches on schedule. Grow faster.</p>
+        </div>
+        <div class="card feature reveal d2">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+          <h3>Mobile-Responsive Design</h3>
+          <p>Built from the ground up for Bangladesh's mobile-first internet audience.</p>
+        </div>
+        <div class="card feature reveal d0">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0-9 9c0 1.2.2 2.4.7 3.5L3 19l3.5-.7A9 9 0 1 0 12 3z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg></div>
+          <h3>Dedicated Support</h3>
+          <p>24/7 monthly-subscription support after launch — we don't disappear.</p>
+        </div>
+        <div class="card feature reveal d1">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9a8 8 0 0 1 16 0v7a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M9 22h6"/></svg></div>
+          <h3>SEO-Ready Builds</h3>
+          <p>Semantic markup, fast loads, clean metadata — rank and grow organically from day one.</p>
+        </div>
+        <div class="card feature reveal d2">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18M12 3v18M12 3a9 9 0 0 1 0 18zM12 3c-3 2-3 6 0 8-3 2-3 6 0 8"/></svg></div>
+          <h3>Unbeatable Pricing</h3>
+          <p>Honest, itemized proposals. No agency bloat. No fine print.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Ch 03 · About ================= -->
+  <section class="sec" id="about">
+    <div class="wrap dual" style="align-items:center">
+      <div class="reveal">
+        <span class="eyebrow">Ch. 03 · Our story</span>
+        <h2 style="font-size:clamp(28px,4.4vw,44px)">The agency built for <em>your brand.</em></h2>
+        <p style="color:var(--muted);margin-top:20px;font-size:16.5px">A brand new agency launched in <strong style="color:#fff">July 2026</strong>, built on the foundation of young Bangladeshi talent. We promise to deliver best-in-class products at all times, at rates that make a serious online presence accessible to any organization — not just the ones with giant budgets.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:30px">
+          <div style="background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:14px;padding:18px 22px"><b class="grad-text" style="font-family:var(--font-head);font-size:26px">09</b><div style="color:var(--muted);font-size:13px">Services</div></div>
+          <div style="background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:14px;padding:18px 22px"><b class="grad-text" style="font-family:var(--font-head);font-size:26px">EST. 2026</b><div style="color:var(--muted);font-size:13px">Bangladesh</div></div>
+          <div style="background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:14px;padding:18px 22px"><b class="grad-text" style="font-family:var(--font-head);font-size:26px">24/7</b><div style="color:var(--muted);font-size:13px">Support</div></div>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <div style="background:linear-gradient(160deg,var(--card2),var(--bg2));border:1px solid var(--line);border-radius:24px;padding:30px;display:flex;align-items:center;justify-content:center;min-height:340px">
+          <img src="img/logo-mark.png" alt="GetYourWeb logo" style="max-width:88%;border-radius:18px" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Ch 04 · Services ================= -->
+  <section class="sec sec-alt" id="services">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Ch. 04 · What we do</span>
+        <h2>End-to-end <em>services.</em></h2>
+        <p>Nine capabilities under one roof — from a hand-written site to AI agents that qualify leads for you.</p>
+      </div>
+      <div class="grid g-3">
+        <div class="card reveal d0"><span class="num">01</span><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="20" cy="18" r="2"/></svg></div><h3>Custom Website</h3><p>Hand-written code built entirely to your requirements.</p></div>
+        <div class="card reveal d1"><span class="num">02</span><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M2 3h3l2.5 13h11L21 8H6"/></svg></div><h3>E-Commerce</h3><p>Online shops tuned to sell — SSLCommerz, COD, mobile-first flows.</p></div>
+        <div class="card reveal d2"><span class="num">03</span><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></div><h3>Payment Gateways</h3><p>bKash, Nagad, Rocket, Visa &amp; Mastercard — integrated and tested.</p></div>
+        <div class="card reveal d0"><span class="num">04</span><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div><h3>Domain &amp; Hosting</h3><p>We buy the name, provision high-speed cloud hosting, take you live.</p></div>
+        <div class="card reveal d1"><span class="num">05</span><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.5"/></svg></div><h3>SEO &amp; Speed</h3><p>Semantic markup, fast loads, metadata — built to rank.</p></div>
+        <div class="card reveal d2"><span class="num">06</span><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 12l9 5 9-5M3 16.5l9 5 9-5"/></svg></div><h3>Cloudflare Security</h3><p>DDoS, WAF, SSL, malware defense baked in.</p></div>
+        <div class="card reveal d0"><span class="num">07</span><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0-9 9h3a6 6 0 0 1 6-6zM21 12a9 9 0 0 0-9-9v3a6 6 0 0 1 6 6z"/></svg></div><h3>GEO Optimization</h3><p>Structured so ChatGPT, Gemini and AI platforms recommend you.</p></div>
+        <div class="card reveal d1"><span class="num">08</span><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8a4 4 0 0 1 4 4M12 4a8 8 0 0 1 8 8M12 12a2 2 0 0 1 2 2M12 8a4 4 0 0 0-4 4M12 4a8 8 0 0 0-8 8M12 12a2 2 0 0 0-2 2"/><path d="M12 20a2 2 0 1 0 0 .01"/></svg></div><h3>AI Chatbots</h3><p>Always-on AI agents that answer visitors and qualify leads 24/7.</p></div>
+        <div class="card reveal d2"><span class="num">09</span><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 0 0-6.4 6.4L5 16l3 3 3.3-3.3a4.5 4.5 0 0 0 6.4-6.4L15 8"/></svg></div><h3>Maintenance</h3><p>Bug fixes, content updates, tuning — ongoing.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Ch 05 · Industries ================= -->
+  <section class="sec" id="industries">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Ch. 05 · Who we serve</span>
+        <h2>Industries <em>we serve.</em></h2>
+        <p>Purpose-built solutions tuned to the way each sector sells and serves.</p>
+      </div>
+      <div class="grid g-3">
+        <div class="card reveal d0"><h3>Retail &amp; E-Commerce</h3><p>SSLCommerz, beautiful UI, conversion-tuned checkout.</p></div>
+        <div class="card reveal d1"><h3>Food &amp; Hospitality</h3><p>Restaurant booking, hotel reservations, secure systems.</p></div>
+        <div class="card reveal d2"><h3>Professional Services</h3><p>Booking flows and user-account systems that feel premium.</p></div>
+        <div class="card reveal d0"><h3>Healthcare</h3><p>Patient-friendly, accessible, compliant clinic sites.</p></div>
+        <div class="card reveal d1"><h3>Education</h3><p>Schools, coaching, e-learning that speaks to students and parents.</p></div>
+        <div class="card reveal d2"><h3>Real Estate</h3><p>Listings, developer portfolios, lead capture around the clock.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Ch 06 · Pricing ================= -->
+  <section class="sec sec-alt" id="pricing">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Ch. 06 · Transparent pricing</span>
+        <h2>Honest prices. <em>No surprises.</em></h2>
+        <p>All prices in BDT. Substantially more flexible than other agencies in Bangladesh.</p>
+      </div>
+      <div class="grid g-3">
+        <div class="card tier reveal d0">
+          <h3>Free</h3>
+          <div class="price"><span class="sym">৳</span><span class="amt">0</span></div>
+          <ul>
+            <li>Landing page (+ 2 extra pages)</li>
+            <li>500 MB storage</li>
+            <li>Standard hosting</li>
+            <li>No custom domain · No further upgrades</li>
+          </ul>
+          <span class="btn" style="cursor:not-allowed;opacity:.5">Current plan</span>
+        </div>
+        <div class="card tier featured reveal d1">
+          <span class="badge">Most chosen</span>
+          <h3>Pro</h3>
+          <div class="price"><span class="sym">৳</span><span class="amt">5,700</span><span class="per"> then ৳5,000/mo</span></div>
+          <p class="tier-note">Own it later for 15–20k (negotiable) — all at once or installments.</p>
+          <ul>
+            <li>Professional business website</li>
+            <li>1.25 GB storage</li>
+            <li>Standard SEO · Monthly upgrades</li>
+            <li>High-speed secure cloud hosting</li>
+            <li>100 emails/day for OTP</li>
+          </ul>
+          <a class="btn" href="#contact">Choose Pro</a>
+        </div>
+        <div class="card tier reveal d2">
+          <h3>Premium</h3>
+          <div class="price"><span class="sym">৳</span><span class="amt">20–25k</span></div>
+          <p class="tier-note">One-time · 3D animated, fully custom.</p>
+          <ul>
+            <li>3D &amp; animated websites</li>
+            <li>Advanced SEO · Custom 3rd-party integrations</li>
+            <li>2.5 GB storage · Priority support</li>
+            <li>Unlimited revisions during build</li>
+            <li>Optional ongoing maintenance (monthly)</li>
+          </ul>
+          <a class="btn" href="#contact">Go Premium</a>
+        </div>
+      </div>
+      <div class="fine reveal">“Storage” includes database, emails, cache, and files. ~1 GB/month is sufficient for most brands. Excess storage priced on request. Refunds are not possible.</div>
+    </div>
+  </section>
+
+  <!-- ================= Ch 07 · AI services ================= -->
+  <section class="sec" id="ai">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Ch. 07 · Premium AI services</span>
+        <h2>Be found by <em>AI — and answer visitors 24/7.</em></h2>
+        <p>In an era where consumers search AI chats more than Google, being recommended matters. Our GEO and chatbot plans are charged monthly, separately from main packages.</p>
+      </div>
+      <div class="dual">
+        <div class="panel reveal">
+          <h3>GEO · Generative Engine Optimization</h3>
+          <p class="sub">Structured so ChatGPT, Gemini and AI platforms recommend you.</p>
+          <div class="plan">
+            <div class="row"><b>Starter</b><span class="pc">৳34,500<small>/mo</small></span></div>
+            <ul>
+              <li>Brand Audit — what AI currently says about you</li>
+              <li>Schema Markup — structured data AI can read</li>
+              <li>FAQ Pages targeting AI search topics</li>
+            </ul>
+          </div>
+          <div class="plan">
+            <div class="row"><b>Growth</b><span class="pc">৳64,500<small>/mo</small></span></div>
+            <ul>
+              <li>Everything in Starter</li>
+              <li>Deep product data, tables &amp; lists AI loves to cite</li>
+              <li>Content rewrites in natural conversational language</li>
+              <li>Constant AI appearance tracking &amp; iteration</li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel reveal d1">
+          <h3>AI Chatbot Integration</h3>
+          <p class="sub">A chatbot acts as a 24/7 employee — answering questions, qualifying visitors, supporting customers.</p>
+          <div class="plan">
+            <div class="row"><b>Starter</b><span class="pc">৳4,300<small>/mo</small></span></div>
+            <ul>
+              <li>1 AI agent · 10 resolutions · 5 reply suggestions</li>
+              <li>5 text edits · 50 live visitors tracked</li>
+              <li>10,000 API calls · 3 proactive campaigns</li>
+            </ul>
+          </div>
+          <div class="plan">
+            <div class="row"><b>Growth</b><span class="pc">৳14,800<small>/mo</small></span></div>
+            <ul>
+              <li>10 AI agents · 200 resolutions · 50 reply suggestions</li>
+              <li>100 text edits · 400 live visitors tracked</li>
+              <li>20,000 API calls · 30 proactive campaigns</li>
+            </ul>
+          </div>
+          <p class="sub" style="margin:16px 0 0;color:#cfd8ea">Need a payment gateway or courier API (Steadfast, Pathao)? <strong style="color:#fff">Integrated at no extra charge.</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Ch 08 · Security ================= -->
+  <section class="sec sec-alt" id="security">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Ch. 08 · Cloudflare security</span>
+        <h2>Battle-tested <em>protection.</em></h2>
+        <p>Every website we build includes a free Cloudflare security setup at no additional cost. Choose the plan that fits your brand.</p>
+      </div>
+      <div class="grid g-3">
+        <div class="card tier reveal d0">
+          <h3>Free Security</h3>
+          <div class="price"><span class="amt" style="font-size:24px">Included</span></div>
+          <p class="tier-note">Best for personal sites, basic blogs, or small business sites.</p>
+          <ul>
+            <li>Unmetered DDoS Protection</li>
+            <li>Universal SSL/TLS</li>
+            <li>Global DNS</li>
+            <li>Basic Managed WAF Ruleset</li>
+          </ul>
+          <span class="btn" style="cursor:not-allowed;opacity:.5">Included free</span>
+        </div>
+        <div class="card tier featured reveal d1">
+          <span class="badge">Popular</span>
+          <h3>Starter</h3>
+          <div class="price"><span class="sym">৳</span><span class="amt">3,700</span><span class="per">/mo</span></div>
+          <ul>
+            <li>Everything in the free plan</li>
+            <li>Enhanced WAF</li>
+            <li>Automatic Security Updates</li>
+            <li>Lossless Image Optimization</li>
+            <li>Basic Bot Management</li>
+          </ul>
+          <a class="btn" href="#contact">Add Starter</a>
+        </div>
+        <div class="card tier reveal d2">
+          <h3>Advanced</h3>
+          <div class="price"><span class="sym">৳</span><span class="amt">34,500</span><span class="per">/mo</span></div>
+          <ul>
+            <li>Everything from Starter Plan</li>
+            <li>Custom WAF Rulesets</li>
+            <li>Advanced DDoS Controls</li>
+            <li>100% Uptime SLA</li>
+            <li>PCI DSS Compliance Support</li>
+            <li>Custom SSL Certificates</li>
+          </ul>
+          <a class="btn" href="#contact">Add Advanced</a>
+        </div>
+      </div>
+      <div class="fine reveal">Security is managed by Cloudflare. Payments for paid security plans go to Cloudflare, not GetYourWeb. We do not hold responsibility in case of data leaks or security infiltrations, because Cloudflare controls the security service. Choose the appropriate plan based on your business or brand.</div>
+    </div>
+  </section>
+
+  <!-- ================= Ch 09 · Contact ================= -->
+  <section class="sec" id="contact">
+    <div class="wrap" style="text-align:center">
+      <div class="sec-head reveal" style="margin-left:auto;margin-right:auto">
+        <span class="eyebrow">Ch. 09 · Start a project</span>
+        <h2>Let's build something <em>great.</em></h2>
+        <p>Whether you have a detailed brief or are still figuring things out, we reply within <strong style="color:#fff">2–4 business hours</strong>. Free consultation. No obligation.</p>
+      </div>
+      <div class="contact-cards reveal d0">
+        <div class="ccard">
+          <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></svg></div>
+          <h3>Email</h3>
+          <div class="kind">Reach us directly</div>
+          <a href="mailto:getyourweb.dev@gmail.com">getyourweb.dev@gmail.com</a>
+        </div>
+        <div class="ccard">
+          <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.4 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg></div>
+          <h3>Call</h3>
+          <div class="kind">Talk it through</div>
+          <a href="tel:+8801932934131">+880 1932-934131</a>
+        </div>
+        <div class="ccard">
+          <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5z"/></svg></div>
+          <h3>WhatsApp</h3>
+          <div class="kind">Fastest response</div>
+          <a href="https://wa.me/8801623838582" target="_blank" rel="noopener">+880 1623-838582</a>
+        </div>
+      </div>
+      <a class="nav-cta" style="margin-top:44px;padding:16px 40px;font-size:15px" href="mailto:getyourweb.dev@gmail.com">Get my free consultation →</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-about">
+        <a class="logo" href="#top">
+          <svg class="mark" viewBox="0 0 44 44" aria-hidden="true"><use href="#glogo"/></svg>
+          <span><span class="gw">Get</span><span class="yw">YourWeb</span></span>
+        </a>
+        <p>A web agency built on young Bangladeshi talent — best-in-class products at rates that make a serious online presence accessible to any organization.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#ai">AI &amp; GEO</a></li>
+          <li><a href="#security">Security</a></li>
+          <li><a href="#industries">Industries</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:getyourweb.dev@gmail.com">getyourweb.dev@gmail.com</a></li>
+          <li><a href="tel:+8801932934131">+880 1932-934131</a></li>
+          <li><a href="https://wa.me/8801623838582" target="_blank" rel="noopener">WhatsApp · +880 1623-838582</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 GetYourWeb. All rights reserved.</span>
+      <div class="chips">
+        <span class="chip">Made in Bangladesh</span>
+        <span class="chip">EST. 2026</span>
+        <span class="chip">24/7 Support</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Shared logo glyph -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="glogo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2DD4BF"/><stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<script src="js/scrub-engine.js"></script>
+<script>
+  /* ---------- 3D World engine ---------- */
+  var world = new ScrollWorld({
+    container: '#world',
+    mode: 'image',
+    runway: 680,
+    manifest: {
+      "version": 1,
+      "mode": "image",
+      "runway": 680,
+      "background": "#070B14",
+      "sections": [
+        {
+          "id":"hero","label":"01 · The Studio","eyebrow":"GetYourWeb · Digital Studio",
+          "title":"Your website is your most powerful business asset.",
+          "body":"We partner with Bangladeshi brands to craft stunning, results-driven websites — from concept to launch.",
+          "tags":["Custom","Fast","SEO-Ready"],
+          "still":"img/s1-hero.jpg","duration":6.5,"scroll":1.2,"linger":1.1,
+          "camera":{"from":{"scale":1.00,"x":0,"y":0,"rotate":0},"to":{"scale":1.16,"x":0,"y":-1.5,"rotate":0.2},"ease":"inOut"}
+        },
+        {
+          "id":"build","label":"02 · Custom Build","eyebrow":"Custom Development",
+          "title":"Hand-written. Built entirely to your demands.",
+          "body":"Ultra-fast, modern architecture that scales from hobby projects to enterprise.",
+          "tags":["High Performance","Scalable","Tailored"],
+          "still":"img/s2-build.jpg","duration":6.5,"scroll":1.2,"linger":0.9,
+          "camera":{"from":{"scale":1.02,"x":0,"y":0.8,"rotate":0},"to":{"scale":1.26,"x":-1.2,"y":-1,"rotate":0.3},"ease":"inOut"}
+        },
+        {
+          "id":"commerce","label":"03 · E-Commerce","eyebrow":"Shops tuned to sell",
+          "title":"Checkout that converts.",
+          "body":"SSLCommerz, bKash, Nagad, Rocket, Visa & Mastercard — integrated, tested, mobile-first.",
+          "tags":["SSLCommerz","Mobile-first","COD"],
+          "still":"img/s3-commerce.jpg","duration":6.5,"scroll":1.2,"linger":0.9,
+          "camera":{"from":{"scale":1.00,"x":0,"y":0,"rotate":0},"to":{"scale":1.24,"x":1.2,"y":-1,"rotate":-0.2},"ease":"inOut"}
+        },
+        {
+          "id":"site3d","label":"04 · 3D & Animated","eyebrow":"Premium Builds",
+          "title":"Websites that feel three-dimensional.",
+          "body":"Our signature premium tier — 3D & animated sites, fully custom, unforgettable.",
+          "tags":["3D","Animation","Premium"],
+          "still":"img/s4-3d.jpg","duration":6.5,"scroll":1.3,"linger":1.0,
+          "camera":{"from":{"scale":1.00,"x":0,"y":0,"rotate":0},"to":{"scale":1.28,"x":0,"y":-2,"rotate":0},"ease":"inOut"}
+        },
+        {
+          "id":"launch","label":"05 · Launch","eyebrow":"Go live & grow",
+          "title":"Rank and grow from day one.",
+          "body":"SEO-ready, Cloudflare-secured, and supported 24/7 long after launch.",
+          "tags":["SEO","Cloudflare","24/7 Support"],
+          "still":"img/s5-launch.jpg","duration":7.5,"scroll":1.4,"linger":1.2,
+          "camera":{"from":{"scale":1.00,"x":0,"y":1.0,"rotate":0},"to":{"scale":1.22,"x":0,"y":-1.5,"rotate":0},"ease":"inOut"}
+        }
+      ],
+      "connectors": [
+        {"id":"c1","label":"The Wave","still":"img/c1-wave.jpg","duration":2.4,"camera":{"from":{"scale":1.12},"to":{"scale":1.5},"ease":"in"}},
+        {"id":"c2","label":"The Tunnel","still":"img/c2-tunnel.jpg","duration":2.4,"camera":{"from":{"scale":1.15},"to":{"scale":1.5},"ease":"in"}},
+        {"id":"c3","label":"The Aurora","still":"img/c3-aurora.jpg","duration":2.4,"camera":{"from":{"scale":1.15},"to":{"scale":1.5},"ease":"in"}},
+        {"id":"c4","label":"The Embers","still":"img/c4-ember.jpg","duration":2.4,"camera":{"from":{"scale":1.18},"to":{"scale":1.52},"ease":"in"}}
+      ],
+      "cta":{
+        "eyebrow":"Ready when you are",
+        "headline":"Start your project today.",
+        "sub":"Free consultation. We reply within 2–4 business hours. No obligation.",
+        "button":"Start a project",
+        "href":"#contact",
+        "showAt":0.93
+      }
+    },
+    onSceneChange: function (s) { /* optional */ }
+  });
+
+  /* ---------- Header scroll state ---------- */
+  var header = document.getElementById('header');
+  function onScroll(){ header.classList.toggle('scrolled', window.scrollY > 30); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  /* ---------- Mobile nav ---------- */
+  var burger = document.getElementById('burger'), navlinks = document.getElementById('navlinks');
+  burger.addEventListener('click', function(){
+    var open = navlinks.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true':'false');
+  });
+  navlinks.addEventListener('click', function(e){
+    if(e.target.closest('a')){ navlinks.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  });
+
+  /* ---------- Smooth anchor scroll ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if(id.length < 2) return;
+      var el = document.querySelector(id);
+      if(!el) return;
+      e.preventDefault();
+      var top = el.getBoundingClientRect().top + window.pageYOffset - 60;
+      window.scrollTo({top:top, behavior:'smooth'});
+    });
+  });
+
+  /* ---------- Reveal on scroll ---------- */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
+</body>
+</html>
