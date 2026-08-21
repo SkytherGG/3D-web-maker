@@ -99,7 +99,7 @@ Set it in the manifest (`"mode"`) or the engine options (`mode: 'video'`).
 ## Requirements
 
 - Nothing for image mode; any modern browser.
-- Video mode: a video generation backend (CLI/API) + `ffmpeg`/`ffprobe`.
+- Video mode: a video generation backend (CLI/API) + `ffmpeg`/`ffprobe`.(Not needed for Arena AI)
 - Optional: Python 3 + Pillow (sprite sheets, knockout), `rembg` (neural
   knockout), `cwebp` (webp optimization), jsdom (smoke test).
 
