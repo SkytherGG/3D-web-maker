@@ -88,10 +88,19 @@ uploaded, the essential templates are inlined at the bottom and you can proceed.
   motif library, encoding-for-scrub, QA checklists.
 - `scripts/motion_render.py` — **the tool for Mode A**: turns a still into a
   smooth, jitter-free, scrub-encoded camera-move clip (with optional 3D parallax).
+- `scripts/scaffold.py` — **fast start**: read a filled `brand-brief.json` →
+  folder + filled `manifest.json` + `index.html` + engine + ready-to-run still
+  prompts. Run it after the interview, then generate stills + render clips.
 - `references/scrub-engine.js` — the portable scroll engine (copy into project).
 - `references/index-template.html` — a minimal standalone page that mounts it.
 - `scripts/` — `knockout.py` (make parallax foreground layers), `extract_frames.py`,
   `build_timeline.py`, `make_sprite_sheet.py`.
+
+> **Fast path:** after Step 1 (interview → `brand-brief.json`), run
+> `python3 scripts/scaffold.py brand-brief.json -o site`. It writes the manifest,
+> page, engine, and every still prompt (style preamble embedded). Then generate the
+> stills with the image tool and render them with `motion_render.py` (the scaffold
+> prints the exact commands).
 
 ---
 
