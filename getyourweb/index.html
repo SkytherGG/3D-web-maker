@@ -610,12 +610,13 @@
   /* ---------- 3D World engine ---------- */
   var world = new ScrollWorld({
     container: '#world',
-    mode: 'image',
+    mode: 'video',
     runway: 680,
     manifest: {
       "version": 1,
-      "mode": "image",
+      "mode": "video",
       "runway": 680,
+      "crossfade": 0.15,
       "background": "#070B14",
       "sections": [
         {
@@ -623,7 +624,8 @@
           "title":"Your website is your most powerful business asset.",
           "body":"We partner with Bangladeshi brands to craft stunning, results-driven websites — from concept to launch.",
           "tags":["Custom","Fast","SEO-Ready"],
-          "still":"img/s1-hero.jpg","duration":6.5,"scroll":1.2,"linger":1.1,
+          "still":"img/s1-hero.jpg","clip":"video/s1-hero.mp4","poster":"img/s1-hero.jpg",
+          "duration":6.0,"scroll":1.2,"linger":1.1,"crossfade":0.15,
           "camera":{"from":{"scale":1.00,"x":0,"y":0,"rotate":0},"to":{"scale":1.16,"x":0,"y":-1.5,"rotate":0.2},"ease":"inOut"}
         },
         {
@@ -631,7 +633,8 @@
           "title":"Hand-written. Built entirely to your demands.",
           "body":"Ultra-fast, modern architecture that scales from hobby projects to enterprise.",
           "tags":["High Performance","Scalable","Tailored"],
-          "still":"img/s2-build.jpg","duration":6.5,"scroll":1.2,"linger":0.9,
+          "still":"img/s2-build.jpg","clip":"video/s2-build.mp4","poster":"img/s2-build.jpg",
+          "duration":6.0,"scroll":1.2,"linger":0.9,"crossfade":0.15,
           "camera":{"from":{"scale":1.02,"x":0,"y":0.8,"rotate":0},"to":{"scale":1.26,"x":-1.2,"y":-1,"rotate":0.3},"ease":"inOut"}
         },
         {
@@ -639,7 +642,8 @@
           "title":"Checkout that converts.",
           "body":"SSLCommerz, bKash, Nagad, Rocket, Visa & Mastercard — integrated, tested, mobile-first.",
           "tags":["SSLCommerz","Mobile-first","COD"],
-          "still":"img/s3-commerce.jpg","duration":6.5,"scroll":1.2,"linger":0.9,
+          "still":"img/s3-commerce.jpg","clip":"video/s3-commerce.mp4","poster":"img/s3-commerce.jpg",
+          "duration":6.0,"scroll":1.2,"linger":0.9,"crossfade":0.15,
           "camera":{"from":{"scale":1.00,"x":0,"y":0,"rotate":0},"to":{"scale":1.24,"x":1.2,"y":-1,"rotate":-0.2},"ease":"inOut"}
         },
         {
@@ -647,7 +651,8 @@
           "title":"Websites that feel three-dimensional.",
           "body":"Our signature premium tier — 3D & animated sites, fully custom, unforgettable.",
           "tags":["3D","Animation","Premium"],
-          "still":"img/s4-3d.jpg","duration":6.5,"scroll":1.3,"linger":1.0,
+          "still":"img/s4-3d.jpg","clip":"video/s4-3d.mp4","poster":"img/s4-3d.jpg",
+          "duration":6.0,"scroll":1.3,"linger":1.0,"crossfade":0.15,
           "camera":{"from":{"scale":1.00,"x":0,"y":0,"rotate":0},"to":{"scale":1.28,"x":0,"y":-2,"rotate":0},"ease":"inOut"}
         },
         {
@@ -655,15 +660,16 @@
           "title":"Rank and grow from day one.",
           "body":"SEO-ready, Cloudflare-secured, and supported 24/7 long after launch.",
           "tags":["SEO","Cloudflare","24/7 Support"],
-          "still":"img/s5-launch.jpg","duration":7.5,"scroll":1.4,"linger":1.2,
+          "still":"img/s5-launch.jpg","clip":"video/s5-launch.mp4","poster":"img/s5-launch.jpg",
+          "duration":7.0,"scroll":1.4,"linger":1.2,"crossfade":0.15,
           "camera":{"from":{"scale":1.00,"x":0,"y":1.0,"rotate":0},"to":{"scale":1.22,"x":0,"y":-1.5,"rotate":0},"ease":"inOut"}
         }
       ],
       "connectors": [
-        {"id":"c1","label":"The Wave","still":"img/c1-wave.jpg","duration":2.4,"camera":{"from":{"scale":1.12},"to":{"scale":1.5},"ease":"in"}},
-        {"id":"c2","label":"The Tunnel","still":"img/c2-tunnel.jpg","duration":2.4,"camera":{"from":{"scale":1.15},"to":{"scale":1.5},"ease":"in"}},
-        {"id":"c3","label":"The Aurora","still":"img/c3-aurora.jpg","duration":2.4,"camera":{"from":{"scale":1.15},"to":{"scale":1.5},"ease":"in"}},
-        {"id":"c4","label":"The Embers","still":"img/c4-ember.jpg","duration":2.4,"camera":{"from":{"scale":1.18},"to":{"scale":1.52},"ease":"in"}}
+        {"id":"c1","label":"The Wave","clip":"video/c1-wave.mp4","still":"img/c1-wave.jpg","poster":"img/c1-wave.jpg","duration":2.4,"camera":{"from":{"scale":1.12},"to":{"scale":1.5},"ease":"in"}},
+        {"id":"c2","label":"The Tunnel","clip":"video/c2-tunnel.mp4","still":"img/c2-tunnel.jpg","poster":"img/c2-tunnel.jpg","duration":2.4,"camera":{"from":{"scale":1.15},"to":{"scale":1.5},"ease":"in"}},
+        {"id":"c3","label":"The Aurora","clip":"video/c3-aurora.mp4","still":"img/c3-aurora.jpg","poster":"img/c3-aurora.jpg","duration":2.4,"camera":{"from":{"scale":1.15},"to":{"scale":1.5},"ease":"in"}},
+        {"id":"c4","label":"The Embers","clip":"video/c4-ember.mp4","still":"img/c4-ember.jpg","poster":"img/c4-ember.jpg","duration":2.4,"camera":{"from":{"scale":1.18},"to":{"scale":1.52},"ease":"in"}}
       ],
       "cta":{
         "eyebrow":"Ready when you are",
