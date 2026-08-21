@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+  3D World — minimal standalone page template.
+  Drop this + scrub-engine.js into any project (plain HTML, Next.js static,
+  Vue, Python-served…) and point it at a manifest.json.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{BRAND_NAME}} — {{PAGE_TITLE}}</title>
+<style>
+  /* Page-level styles only. The engine styles its own stage/HUD. */
+  html { scroll-behavior: auto; }
+  body {
+    margin: 0;
+    background: {{BG_HEX}};           /* match manifest background */
+    color: #fff;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+  #world { position: relative; }
+  footer {
+    position: relative;
+    z-index: 60;
+    padding: 4rem clamp(20px, 5vw, 72px);
+    background: {{BG_HEX}};
+    border-top: 1px solid rgba(255,255,255,.1);
+    font-size: 14px;
+    color: rgba(255,255,255,.65);
+  }
+  .sw-stage { z-index: 50; }
+</style>
+</head>
+<body>
+
+<div id="world"></div>
+
+<!-- Optional footer: real site content appears after the world's runway. -->
+<footer>
+  <p><strong>{{BRAND_NAME}}</strong> — {{ONE_LINE_PITCH}}</p>
+  <p>© {{YEAR}} {{BRAND_NAME}}. All rights reserved.</p>
+</footer>
+
+<script src="scrub-engine.js"></script>
+<script>
+  var world = new ScrollWorld({
+    container: '#world',
+    manifest: 'manifest.json',   /* or inline: { sections: [...], connectors: [...] } */
+    mode: 'auto',                /* auto | video | image | sprite */
+    runway: 700                  /* scroll length in viewport-heights */
+  });
+</script>
+</body>
+</html>

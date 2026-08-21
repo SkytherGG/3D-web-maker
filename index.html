@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NORTHLIGHT — One World. One Journey. (3D World demo)</title>
+<style>
+  /* Page-level styles — the engine styles its own stage & HUD. */
+  html { scroll-behavior: auto; }
+  body {
+    margin: 0;
+    background: #0B1E3A;
+    color: #fff;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+  }
+  #world { position: relative; }
+  .sw-stage { z-index: 50; }
+  footer {
+    position: relative;
+    z-index: 60;
+    padding: 5rem clamp(20px, 6vw, 90px);
+    background: linear-gradient(180deg, #0B1E3A, #060F20);
+    border-top: 1px solid rgba(255,255,255,.08);
+  }
+  .footer-inner { max-width: 1080px; margin: 0 auto; }
+  .footer-inner h2 {
+    font-size: clamp(20px, 3vw, 30px);
+    margin: 0 0 10px; letter-spacing: -.01em;
+  }
+  .footer-inner p { color: rgba(255,255,255,.65); line-height: 1.6; max-width: 60ch; }
+  .footer-meta {
+    margin-top: 2.5rem; padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,.1);
+    font-size: 12px; color: rgba(255,255,255,.4);
+    display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+  }
+  .chip {
+    display: inline-block; font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+    padding: 4px 10px; border: 1px solid rgba(255,255,255,.22); border-radius: 999px;
+    color: rgba(255,255,255,.8);
+  }
+  /* No-JS fallback: first frame as a static poster. */
+  noscript style { }
+</style>
+<noscript><style>#world{position:fixed;inset:0;background:#0B1E3A url('img/hero.jpg') center/cover;}</style></noscript>
+</head>
+<body>
+
+<div id="world"></div>
+
+<footer>
+  <div class="footer-inner">
+    <h2>Northlight Expeditions</h2>
+    <p>This page was built by the <strong>3D World</strong> agent skill: one scroll,
+       one continuous camera flight through a generated world — five scenes joined by
+       four connector frames, animated entirely in vanilla JS. No video was used; the
+       engine performs every camera move and crossfades through the connectors.</p>
+    <div class="footer-meta">
+      <span class="chip">9 AI stills</span>
+      <span class="chip">Image mode</span>
+      <span class="chip">Zero dependencies</span>
+      <span>Scroll up to fly again — every move plays in reverse.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="engine/scrub-engine.js"></script>
+<script>
+  var world = new ScrollWorld({
+    container: '#world',
+    mode: 'image',
+    runway: 700,
+    manifest: {
+      "version": 1,
+      "mode": "image",
+      "runway": 700,
+      "background": "#0B1E3A",
+      "brand": { "name": "NORTHLIGHT" },
+      "sections": [
+        {
+          "id": "hero",
+          "label": "00 — The World",
+          "eyebrow": "Northlight Expeditions",
+          "title": "One world. One journey.",
+          "body": "Scroll to fly across a little alpine universe — from misty trailhead to campfire under the aurora.",
+          "tags": ["Aurora", "Glaciers", "Trails"],
+          "still": "img/hero.jpg",
+          "duration": 5.5,
+          "scroll": 1.1,
+          "linger": 0.6,
+          "camera": { "from": { "scale": 1.00, "x": 0, "y": 0, "rotate": 0 },
+                      "to":   { "scale": 1.16, "x": 0, "y": -2, "rotate": 0.2 },
+                      "ease": "inOut" }
+        },
+        {
+          "id": "trailhead",
+          "label": "01 — The Trailhead",
+          "eyebrow": "Day 01 · The Beginning",
+          "title": "Where the journey starts",
+          "body": "A warm lodge, a winding trail, and a sky full of morning mist.",
+          "tags": ["Lodges", "Dawn", "Trails"],
+          "still": "img/s1-trailhead.jpg",
+          "duration": 6.2,
+          "scroll": 1.2,
+          "linger": 0.8,
+          "camera": { "from": { "scale": 1.00, "x": 0, "y": 0, "rotate": 0 },
+                      "to":   { "scale": 1.24, "x": -1.2, "y": -1, "rotate": 0.3 },
+                      "ease": "inOut" }
+        },
+        {
+          "id": "valley",
+          "label": "02 — The Valley",
+          "eyebrow": "Day 02 · The Crossing",
+          "title": "Cross the glacier lake",
+          "body": "Turquoise water, wildflower meadows, and peaks that don't quit.",
+          "tags": ["Glacier Lake", "Wildflowers", "Hiking"],
+          "still": "img/s2-valley.jpg",
+          "duration": 6.2,
+          "scroll": 1.2,
+          "linger": 0.8,
+          "camera": { "from": { "scale": 1.04, "x": -2.0, "y": 0, "rotate": 0 },
+                      "to":   { "scale": 1.28, "x": 2.0, "y": -1, "rotate": 0 },
+                      "ease": "inOut" }
+        },
+        {
+          "id": "fjord",
+          "label": "03 — The Fjord",
+          "eyebrow": "Day 03 · The First Light",
+          "title": "Ice under the first aurora",
+          "body": "A frozen sea, a quiet ship, and the lights arriving overhead.",
+          "tags": ["Fjords", "Sea Ice", "First Light"],
+          "still": "img/s3-fjord.jpg",
+          "duration": 6.2,
+          "scroll": 1.2,
+          "linger": 0.8,
+          "camera": { "from": { "scale": 1.00, "x": 0, "y": 1.0, "rotate": 0 },
+                      "to":   { "scale": 1.26, "x": 0, "y": -2.0, "rotate": 0 },
+                      "ease": "inOut" }
+        },
+        {
+          "id": "camp",
+          "label": "Night — Base Camp",
+          "eyebrow": "The Finale",
+          "title": "Warm fire. Full sky.",
+          "body": "This is what we came for — and there's a spot saved for you.",
+          "tags": ["Campfire", "Aurora", "Telescope"],
+          "still": "img/s4-camp.jpg",
+          "duration": 7.6,
+          "scroll": 1.4,
+          "linger": 1.0,
+          "camera": { "from": { "scale": 1.00, "x": 0, "y": 0, "rotate": 0 },
+                      "to":   { "scale": 1.24, "x": 0, "y": -1.5, "rotate": 0 },
+                      "ease": "inOut" }
+        }
+      ],
+      "connectors": [
+        {
+          "id": "c1",
+          "label": "The Clouds",
+          "still": "img/c1-cloud.jpg",
+          "duration": 2.4,
+          "camera": { "from": { "scale": 1.12 }, "to": { "scale": 1.5 }, "ease": "in" }
+        },
+        {
+          "id": "c2",
+          "label": "The Light",
+          "still": "img/c2-light.jpg",
+          "duration": 2.4,
+          "camera": { "from": { "scale": 1.18 }, "to": { "scale": 1.55 }, "ease": "in" }
+        },
+        {
+          "id": "c3",
+          "label": "The Aurora",
+          "still": "img/c3-aurora.jpg",
+          "duration": 2.4,
+          "camera": { "from": { "scale": 1.18 }, "to": { "scale": 1.55 }, "ease": "in" }
+        },
+        {
+          "id": "c4",
+          "label": "The Embers",
+          "still": "img/c4-ember.jpg",
+          "duration": 2.4,
+          "camera": { "from": { "scale": 1.2 }, "to": { "scale": 1.58 }, "ease": "in" }
+        }
+      ],
+      "cta": {
+        "eyebrow": "Ready when you are",
+        "headline": "See it for real.",
+        "sub": "One continuous flight. Zero hard cuts. Your brand could be next.",
+        "button": "Plan your expedition",
+        "href": "https://example.com",
+        "showAt": 0.92
+      }
+    },
+    onSceneChange: function (section) {
+      console.log('scene:', section.id);
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+{
+  "_comment": "3D World scene manifest — schema example. Drop this file next to the site assets and point the engine at it. mode: auto | video | image | sprite.",
+  "version": 1,
+  "mode": "image",
+  "runway": 700,
+  "background": "#0B1E3A",
+  "fps": 30,
+  "brand": {
+    "name": "NORTHLIGHT",
+    "logoSrc": "img/logo.png"
+  },
+  "sections": [
+    {
+      "id": "trailhead",
+      "label": "01 — Trailhead",
+      "eyebrow": "DAY 01 · THE BEGINNING",
+      "title": "Where the journey starts",
+      "body": "A warm lodge, a winding trail, and a sky full of morning mist.",
+      "tags": ["Lodges", "Dawn", "Trails"],
+      "clip": "video/trailhead.mp4",
+      "clipMobile": "video/trailhead-m.mp4",
+      "poster": "img/trailhead.webp",
+      "still": "img/trailhead.webp",
+      "sheet": { "src": "sprites/trailhead.png", "cols": 4, "rows": 2 },
+      "duration": 6,
+      "scroll": 1.2,
+      "linger": 0.8,
+      "camera": {
+        "from": { "scale": 1.0,  "x": 0,    "y": 0,  "rotate": 0 },
+        "to":   { "scale": 1.24, "x": -1.5, "y": -1, "rotate": 0.3 },
+        "ease": "inOut"
+      },
+      "crossfade": 0.1
+    }
+  ],
+  "connectors": [
+    {
+      "id": "c1",
+      "label": "The clouds",
+      "clip": "video/conn1.mp4",
+      "clipMobile": "video/conn1-m.mp4",
+      "still": "img/conn1.webp",
+      "sheet": { "src": "sprites/conn1.png", "cols": 4, "rows": 2 },
+      "duration": 2.5,
+      "blend": 0.5,
+      "camera": { "from": { "scale": 1.15 }, "to": { "scale": 1.5 }, "ease": "in" }
+    }
+  ],
+  "cta": {
+    "eyebrow": "READY WHEN YOU ARE",
+    "headline": "See it for real.",
+    "sub": "One line of persuasion before the button.",
+    "button": "Book your expedition",
+    "href": "https://example.com/book",
+    "showAt": 0.94
+  },
+  "audio": {
+    "src": "audio/ambient.mp3",
+    "volume": 0.35
+  }
+}
