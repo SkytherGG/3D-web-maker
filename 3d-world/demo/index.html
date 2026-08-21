@@ -57,9 +57,9 @@
        four connector frames, animated entirely in vanilla JS. No video was used; the
        engine performs every camera move and crossfades through the connectors.</p>
     <div class="footer-meta">
-      <span class="chip">9 AI stills</span>
-      <span class="chip">Image mode</span>
-      <span class="chip">Zero dependencies</span>
+      <span class="chip">9 AI stills → 9 real video clips</span>
+      <span class="chip">Video mode · scroll scrubs real .mp4</span>
+      <span class="chip">ffmpeg motion-render</span>
       <span>Scroll up to fly again — every move plays in reverse.</span>
     </div>
   </div>
@@ -69,13 +69,14 @@
 <script>
   var world = new ScrollWorld({
     container: '#world',
-    mode: 'image',
+    mode: 'video',
     runway: 700,
     manifest: {
       "version": 1,
-      "mode": "image",
+      "mode": "video",
       "runway": 700,
       "background": "#0B1E3A",
+      "crossfade": 0.15,
       "brand": { "name": "NORTHLIGHT" },
       "sections": [
         {
@@ -86,6 +87,8 @@
           "body": "Scroll to fly across a little alpine universe — from misty trailhead to campfire under the aurora.",
           "tags": ["Aurora", "Glaciers", "Trails"],
           "still": "img/hero.jpg",
+          "clip": "video/hero.mp4",
+          "poster": "img/hero.jpg",
           "duration": 5.5,
           "scroll": 1.1,
           "linger": 0.6,
@@ -101,6 +104,8 @@
           "body": "A warm lodge, a winding trail, and a sky full of morning mist.",
           "tags": ["Lodges", "Dawn", "Trails"],
           "still": "img/s1-trailhead.jpg",
+          "clip": "video/s1-trailhead.mp4",
+          "poster": "img/s1-trailhead.jpg",
           "duration": 6.2,
           "scroll": 1.2,
           "linger": 0.8,
@@ -116,6 +121,8 @@
           "body": "Turquoise water, wildflower meadows, and peaks that don't quit.",
           "tags": ["Glacier Lake", "Wildflowers", "Hiking"],
           "still": "img/s2-valley.jpg",
+          "clip": "video/s2-valley.mp4",
+          "poster": "img/s2-valley.jpg",
           "duration": 6.2,
           "scroll": 1.2,
           "linger": 0.8,
@@ -131,6 +138,8 @@
           "body": "A frozen sea, a quiet ship, and the lights arriving overhead.",
           "tags": ["Fjords", "Sea Ice", "First Light"],
           "still": "img/s3-fjord.jpg",
+          "clip": "video/s3-fjord.mp4",
+          "poster": "img/s3-fjord.jpg",
           "duration": 6.2,
           "scroll": 1.2,
           "linger": 0.8,
@@ -146,6 +155,8 @@
           "body": "This is what we came for — and there's a spot saved for you.",
           "tags": ["Campfire", "Aurora", "Telescope"],
           "still": "img/s4-camp.jpg",
+          "clip": "video/s4-camp.mp4",
+          "poster": "img/s4-camp.jpg",
           "duration": 7.6,
           "scroll": 1.4,
           "linger": 1.0,
@@ -159,6 +170,8 @@
           "id": "c1",
           "label": "The Clouds",
           "still": "img/c1-cloud.jpg",
+          "clip": "video/c1-cloud.mp4",
+          "poster": "img/c1-cloud.jpg",
           "duration": 2.4,
           "camera": { "from": { "scale": 1.12 }, "to": { "scale": 1.5 }, "ease": "in" }
         },
@@ -166,6 +179,8 @@
           "id": "c2",
           "label": "The Light",
           "still": "img/c2-light.jpg",
+          "clip": "video/c2-light.mp4",
+          "poster": "img/c2-light.jpg",
           "duration": 2.4,
           "camera": { "from": { "scale": 1.18 }, "to": { "scale": 1.55 }, "ease": "in" }
         },
@@ -173,6 +188,8 @@
           "id": "c3",
           "label": "The Aurora",
           "still": "img/c3-aurora.jpg",
+          "clip": "video/c3-aurora.mp4",
+          "poster": "img/c3-aurora.jpg",
           "duration": 2.4,
           "camera": { "from": { "scale": 1.18 }, "to": { "scale": 1.55 }, "ease": "in" }
         },
@@ -180,6 +197,8 @@
           "id": "c4",
           "label": "The Embers",
           "still": "img/c4-ember.jpg",
+          "clip": "video/c4-ember.mp4",
+          "poster": "img/c4-ember.jpg",
           "duration": 2.4,
           "camera": { "from": { "scale": 1.2 }, "to": { "scale": 1.58 }, "ease": "in" }
         }

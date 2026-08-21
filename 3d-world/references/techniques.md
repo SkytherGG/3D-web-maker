@@ -5,21 +5,22 @@ instead of a slideshow of clips. Read this before generating connectors.
 
 ---
 
-## The one rule: seams must be frame-identical (video) or screen-covered (image)
+## The one rule: seams must be frame-identical (true AI video) or screen-covered (Mode A / image)
 
-- **Video mode:** a connector's endpoints must be the ACTUAL rendered frames of
-  its neighbours — `clip_i`'s last frame and `clip_{i+1}`'s first frame, fed to
-  the model as `--start-image` / `--end-image`. Never a fresh render of the same
-  scene: every generation differs, and two different renders of "the kitchen"
-  will pop where they meet. When the connector hands the exact pixels over, both
-  seams are identical by construction:
-  `clip_i.end == conn.start` and `conn.end == clip_{i+1}.start`.
-- **Image mode:** no video exists, so the engine *covers* the seam instead. A
-  connector frame (abstract neutral zone) fades in over the outgoing scene until
-  it fills 100 % of the screen, then fades out onto the incoming scene. The
-  underlying scene swap happens while the screen is entirely connector — there is
-  no visible cut. For this to work the connector frame must be **screen-filling
-  at its peak** and share palette + light with both neighbours.
+- **Mode A (motion-render, Arena DEFAULT):** ffmpeg can't frame-lock (no AI video
+  gen to bridge exact pixels), so the engine **covers** the seam with real *moving*
+  connector clips. A full-bleed abstract connector clip fades in over the outgoing
+  scene, fills 100 % of the screen at its peak, then fades onto the incoming scene.
+  The scene swap happens while the screen is entirely connector — no visible cut.
+  For this to hide the swap the connector clip must be **screen-filling at its
+  peak** (`--z1 1.5`) and its still must share palette + light with both neighbours.
+- **True AI video (Mode B):** a connector's endpoints must be the ACTUAL rendered
+  frames of its neighbours — `clip_i`'s last frame and `clip_{i+1}`'s first frame,
+  fed to the model as `--start-image` / `--end-image`. Never a fresh render of the
+  same scene. Then `clip_i.end == conn.start` and `conn.end == clip_{i+1}.start`
+  by construction.
+- **Image mode (Mode C, last resort):** engine crossfades stills + abstract
+  connector stills (same cover-the-seam idea, no motion).
 
 ---
 
@@ -42,6 +43,19 @@ a grounded direction, say why and confirm before rendering.
 ---
 
 ## Camera grammar — the move should fit the concept
+
+In Mode A every move is a `scripts/motion_render.py` camera move baked into a real
+clip. Keep these rules or the flight feels cheap:
+
+- **Smoothstep, always.** The script eases every move by default. Never force a
+  linear ramp — sudden start/stop is the #1 sign of an amateur effect.
+- **Vary the moves.** Don't push-in on every scene. Alternate push / pan / drift /
+  orbit / rise so the flight has rhythm (see the move table in `prompts.md`).
+- **Respect the zoom ceiling.** Keep each scene within ~1.0–1.4× zoom so the
+  upscaled still stays sharp. `--z1 1.5` is only for screen-filling connectors.
+- **Parallax = depth.** A knocked-out foreground drifting faster than the
+  background (`--fg hero-float.png --fg-speed 1.6`) is the cheapest way to add
+  genuine 3D depth to a hero scene.
 
 "Forward only" is the *seam* rule, not the *leg* rule:
 
@@ -86,10 +100,11 @@ reverse. Seam velocity must be consistent in both directions.
 
 ---
 
-## Connector motifs (image mode) — pick by the journey's mood
+## Connector motifs (connector stills — Modes A & C) — pick by the journey's mood
 
 A connector is a full-bleed neutral zone the camera flies INTO. It must not be
-an identifiable place (a hard-edged shape reads as a cut). Library:
+an identifiable place (a hard-edged shape reads as a cut). In Mode A each still
+becomes a "fly into" clip (`--move push --z1 1.5`). Library:
 
 | Seam mood | Motif |
 |---|---|
@@ -107,10 +122,12 @@ alternate 2–3 motifs. Keep palette + light direction shared with both neighbou
 
 ---
 
-## Encoding for scrub (video mode)
+## Encoding for scrub (Modes A & B)
 
 Scrubbing writes `video.currentTime` every rendered frame, so **seek cost is the
-enemy** — the player must decode from the nearest keyframe.
+enemy** — the player must decode from the nearest keyframe. `motion_render.py`
+already encodes Mode A clips correctly (H.264, yuv420p, faststart, GOP 8, crf 20,
+no audio); only tune for mobile.
 
 - H.264 (`libx264`), `yuv420p`, `-movflags +faststart`, **no audio**.
 - Native resolution — never upscale (encode what `ffprobe` reports).
