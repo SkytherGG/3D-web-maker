@@ -23,10 +23,11 @@ Collect and write down:
 - `CAMERA` — `fly-through` (arch B: dives + aerial hops) |
   `walkthrough` (arch A: one continuous forward flight) |
   `locked-iso` (arch A + fixed high angle). **Always asked.**
-- `RENDER_MODE` — `image` (all-stills; engine animates the camera) |
-  `video` (true AI camera clips; costs money/credits). State estimated cost
-  before rendering.
-- `MOBILE` — yes/no (video mode only; ~2× video credits for a native 9:16 chain).
+- `RENDER_MODE` — in Arena Agent Mode, default to **Motion-render video** (Mode A:
+  image tool + ffmpeg → real scrubbable clips). Only `ai-video` if a real video
+  API exists (state credits, get approval). `image` only if ffmpeg is unavailable.
+- `MOBILE` — yes/no (native portrait chain costs ~2× for AI video; in Mode A it's
+  a free re-render at 720p/GOP 4).
 - `CTA` — button text + destination URL.
 
 ---
@@ -71,6 +72,25 @@ Swap the first two sentences; keep the palette/no-text tail unchanged.
   reads premium), the camera glides through doorways/glass rather than opening
   a roof, and cohesion comes entirely from the identical preamble (do NOT pass
   an image reference between scenes — it clones the same room).
+
+---
+
+## Mode A motion-render — map a move to each scene
+
+When rendering clips with `scripts/motion_render.py` (the default Arena Agent
+Mode path), pick each scene's `--move` from the concept (not randomly):
+
+| Concept / scene | `--move` | Why |
+|---|---|---|
+| Opening / hero | `push` | slow, confident zoom-in to the centre |
+| Product / luxury | `dolly --fx .5 --fy .5` or `orbit` | dolly to a focal point; orbit = fake 3D turn |
+| Scale / atrium / campus | `rise` or `panup` | zoom-out / tilt-up reveal |
+| Production line / shelf / counter | `pan` | lateral track, foreground parallax |
+| Travel / outdoors / process | `drift` | diagonal glide feels airborne |
+| Finale / CTA | `rise --dur 7` | big slow reveal; engine `linger` holds it |
+
+Optional real-3D parallax: knock the subject out (`scripts/knockout.py`) and pass
+`--fg hero-float.png --fg-speed 1.6` so it drifts faster than the background.
 
 ---
 
