@@ -41,6 +41,9 @@ make it genuinely good:
 │   ├── motion_render.py        ★ turn a still into a real scrubbable camera-move
 │   │                             .mp4 (smoothstep ease, jitter-free, scrub-encoded;
 │   │                             optional 3D parallax) — the Mode A workhorse
+│   ├── scaffold.py             ★ one-command starter: read a brand-brief.json →
+│   │                             folder + filled manifest.json + index.html +
+│   │                             engine + ready-to-run still prompts
 │   ├── extract_frames.py       ffmpeg boundary frames / frame sequences
 │   ├── build_timeline.py       stitch the clip chain into one world.mp4
 │   ├── make_sprite_sheet.py    pack frames into a sprite sheet (+ descriptor)
@@ -112,6 +115,19 @@ Set it in the manifest (`"mode"`) or the engine options (`mode: 'video'`).
 The only requirement beyond the built-in image tool is **ffmpeg**, which
 `scripts/motion_render.py` finds automatically (it uses the static binary bundled
 with `pip install imageio-ffmpeg` if ffmpeg isn't on PATH).
+
+### Fast start — scaffold a project from a brief
+
+```bash
+# 1. Write (or copy) a brief:
+python3 3d-world/scripts/scaffold.py --example
+# 2. Scaffold the whole project:
+python3 3d-world/scripts/scaffold.py brand-brief.json -o site
+# 3. Generate the stills with an image tool (prompts/ is already filled in),
+#    render them into real clips with motion_render.py (it prints the commands),
+#    then:
+cd site && python3 -m http.server 8000
+```
 
 ## How the "no hard cuts" trick works
 

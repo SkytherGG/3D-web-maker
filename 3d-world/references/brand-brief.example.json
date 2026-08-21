@@ -1,0 +1,73 @@
+{
+  "brand": {
+    "name": "Northlight Expeditions",
+    "pitch": "One world. One journey.",
+    "page_title": "One World. One Journey.",
+    "background": "#0B1E3A",
+    "accent": "#6FC7C0"
+  },
+  "palette": [
+    "#0B1E3A",
+    "#6FC7C0",
+    "#8DFCA1",
+    "#F5EDE0",
+    "#C88A5A"
+  ],
+  "style": {
+    "art_direction": "clay diorama"
+  },
+  "mode": "video",
+  "runway": 700,
+  "crossfade": 0.15,
+  "camera": "fly-through",
+  "sections": [
+    {
+      "id": "trailhead",
+      "label": "01 \u2014 Trailhead",
+      "eyebrow": "DAY 01",
+      "title": "Where the journey starts",
+      "body": "A warm lodge and a winding trail.",
+      "tags": [
+        "Lodges",
+        "Dawn"
+      ],
+      "subject": "a warm mountain lodge with a winding trail, string lights, and morning mist"
+    },
+    {
+      "id": "valley",
+      "label": "02 \u2014 The Crossing",
+      "eyebrow": "DAY 02",
+      "title": "Cross the glacier lake",
+      "body": "Turquoise water and wildflower meadows.",
+      "tags": [
+        "Glacier Lake",
+        "Wildflowers"
+      ],
+      "subject": "a turquoise glacier lake with a wooden canoe, wildflower meadows, and distant peaks"
+    },
+    {
+      "id": "camp",
+      "label": "03 \u2014 Base Camp",
+      "eyebrow": "THE FINALE",
+      "title": "Warm fire. Full sky.",
+      "body": "This is what we came for.",
+      "tags": [
+        "Campfire",
+        "Aurora"
+      ],
+      "subject": "a cozy base camp with a campfire, tents, and a telescope under the aurora"
+    }
+  ],
+  "connector_motifs": [
+    "dense cloud bank",
+    "radiant light tunnel"
+  ],
+  "cta": {
+    "eyebrow": "READY WHEN YOU ARE",
+    "headline": "See it for real.",
+    "sub": "One continuous flight. Your brand could be next.",
+    "button": "Plan your expedition",
+    "href": "https://example.com",
+    "showAt": 0.94
+  }
+}
